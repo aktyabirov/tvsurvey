@@ -49,9 +49,7 @@
             box-sizing: border-box;
             font-size: 16px;
         }
-        textarea {
-            height: 100px;
-        }
+      
         input[type="submit"] {
             background-color: #4caf50;
             color: #fff;
@@ -86,12 +84,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        @media only screen and (max-width: 600px) {
-            body, html {
-                overflow-y: auto; 
-                height: 100%; 
-            }
-        }
     </style>
 </head>
 <body>
@@ -101,13 +93,13 @@
             Биз телеканалимизнинг алоқа сифати борасида сўровнома ўтказишни  бошладик. Илтимос сўровномада иштирок этсангиз! Сизнинг телевизорингиз “Ўзбекистон тарих” телеканалини  кўрсатадими, ёки йўқ?</h3>
         <br>
         <br>
-        <label for="name">Исмингиз</label>
+        <label for="name">Исмингиз:</label>
         <input type="text" id="name" name="name" required>
 
-        <label for="phoneNumber">Телефон рақамингиз</label>
+        <label for="phoneNumber">Телефон рақамингиз:</label>
         <input type="phoneNumber" id="phoneNumber" name="phoneNumber" required>
 
-        <label for="region">Ҳудудингиз</label>
+        <label for="region">Ҳудудингиз:</label>
         <input type="region" id="region" name="region" required>
 
         <label>Телеканал кўрсатадими ёки ёқми?</label>
