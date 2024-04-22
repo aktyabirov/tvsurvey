@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>So'rovnoma</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #surveyForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .radio-inline {
+            display: inline-block;
+            margin-right: 20px; 
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="role"],
+        input[type="region"],
+        input[type="date"],
+        input[type="phoneNumber"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        textarea {
+            height: 100px;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        body.loading {
+            pointer-events: none; 
+        }
+        .loader {
+            border: 6px solid #f3f3f3; 
+            border-top: 6px solid #3498db; 
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media only screen and (max-width: 600px) {
+            body, html {
+                overflow-y: auto; 
+                height: 100%; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="surveyForm">
+        <h3>Ассалому алайкум ҳурматли юртдошлар!  
+
+            Биз телеканалимизнинг алоқа сифати борасида сўровнома ўтказишни  бошладик. Илтимос сўровномада иштирок этсангиз! Сизнинг телевизорингиз “Ўзбекистон тарих” телеканалини  кўрсатадими, ёки йўқ?</h3>
+        <br>
+        <br>
+        <label for="name">Исмингиз</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phoneNumber">Телефон рақамингиз</label>
+        <input type="phoneNumber" id="phoneNumber" name="phoneNumber" required>
+
+        <label for="region">Ҳудудингиз</label>
+        <input type="region" id="region" name="region" required>
+
+        <label>Телеканал кўрсатадими ёки ёқми?</label>
+        <br>
+        <div class="radio-inline">
+            <input type="radio" id="recommendYes" name="isshows" value="yes" required>
+            <label for="recommendYes">Ҳа кўрсатади </label>
+        </div>
+        <div class="radio-inline">
+            <input type="radio" id="recommendNo" name="isshows" value="no" required>
+            <label for="recommendNo">Йўқ кўрсатмайди</label>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <label>Кўрсатса қандай сифатда кўрсатади ?</label>
+        <br>
+        <div class="radio-inline">
+            <input type="radio" id="recommendYes" name="quality" value="bad" required>
+            <label for="recommendYes">Сифати паст </label>
+        </div>
+        <div class="radio-inline">
+            <input type="radio" id="recommendNo" name="quality" value="good" required>
+            <label for="recommendNo">Сифати юқори</label>
+        </div>
+
+
+
+        <br>
+        <br>
+        <label for="comment">Таклифлар учун жой:</label>
+        <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+        <button type="submit" id="submitButton" style="background-color: #4caf50; color: #fff; width: 100%; padding: 10px 40px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;"> 👉 Юбориш 👈 </button>
+        <div class="loader" id="loader" style="display: none;"></div>
+    </form>
+
+    <script>
+        document.getElementById("surveyForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            var submitButton = document.getElementById("submitButton");
+            var loader = document.getElementById("loader");
+            submitButton.disabled = true; 
+            loader.style.display = "block"; 
+            fetch("https://script.google.com/macros/s/AKfycbwErwVULr1yegUW6Qb961_-dXUv17vX1taQQ1FqewTpx134QzYIom1CryrK5fqKo7jQ/exec", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                window.location.href = "thanks.html";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            })
+            .finally(() => {
+                submitButton.disabled = false; 
+                loader.style.display = "none"; 
+            });
+        });
+    </script>
+</body>
+</html>
+
